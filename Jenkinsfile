@@ -10,7 +10,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'mvn deploy'
+                nexusPublisher nexusInstanceId: 'nexus-local-3', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'demo', groupId: 'com.example', packaging: 'jar', version: 'demo-SNAPSHOT']]]
             }
         }
     }
