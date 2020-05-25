@@ -11,7 +11,8 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh "cp /home/hollik/.m2/settings.xml settings.xml"
-                sh 'mvn deploy'
+                sh 'mvn -s settings.xml clean deploy'
+
             }
         }
     }
