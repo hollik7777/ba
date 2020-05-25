@@ -10,7 +10,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                nexusPublisher nexusInstanceId: 'nexus-local-3', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/BA_master/target/demo-demo-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'demo', groupId: 'com.example', packaging: 'jar', version: 'demo-SNAPSHOT']]]
+                sh "cp /home/hollik/.m2/settings.xml settings.xml"
+                sh 'mvn deploy'
             }
         }
     }
